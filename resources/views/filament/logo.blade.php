@@ -1,0 +1,1 @@
+<img src="{{ dev()?->admin_logo_url }}" style="height:{{ dev()?->logo_height .'px' }}" alt="Admin">

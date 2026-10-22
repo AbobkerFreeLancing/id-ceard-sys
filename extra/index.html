@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BrewRewards | Loyalty Program Platform for Cafes</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-dim": "#9d9da6",
+                        "on-secondary-container": "#bfbec8",
+                        "primary-fixed-dim": "#d4d4d4",
+                        "on-tertiary-container": "#482904",
+                        "surface-variant": "#162b2e",
+                        "surface-container-low": "#0a181a",
+                        "error-container": "#7f2927",
+                        "inverse-on-surface": "#565554",
+                        "primary": "#c6c6c7",
+                        "on-error": "#490106",
+                        "secondary-fixed": "#e2e1eb",
+                        "tertiary": "#e7b483",
+                        "outline": "#767575",
+                        "tertiary-fixed-dim": "#ca9a6b",
+                        "on-surface": "#e7e5e4",
+                        "inverse-surface": "#fcf8f8",
+                        "on-background": "#e7e5e4",
+                        "tertiary-dim": "#ca9a6b",
+                        "on-tertiary-fixed": "#271300",
+                        "secondary-fixed-dim": "#d4d3dd",
+                        "on-tertiary": "#54330d",
+                        "tertiary-fixed": "#d9a777",
+                        "surface-container-highest": "#1a3236",
+                        "on-primary-container": "#d0d0d0",
+                        "on-error-container": "#ff9993",
+                        "on-primary": "#3f4041",
+                        "outline-variant": "#344c50",
+                        "on-secondary": "#1e2027",
+                        "primary-container": "#454747",
+                        "error": "#ee7d77",
+                        "background": "#0D1F22",
+                        "on-primary-fixed-variant": "#5a5c5c",
+                        "primary-dim": "#b8b9b9",
+                        "secondary": "#9d9da6",
+                        "on-primary-fixed": "#3e4040",
+                        "on-secondary-fixed": "#3e3f46",
+                        "surface-tint": "#c6c6c7",
+                        "surface-dim": "#0D1F22",
+                        "surface-container": "#122629",
+                        "inverse-primary": "#5e5f60",
+                        "primary-fixed": "#e2e2e2",
+                        "surface-container-lowest": "#050e0f",
+                        "on-tertiary-fixed-variant": "#53320b",
+                        "tertiary-container": "#d9a777",
+                        "on-surface-variant": "#acabaa",
+                        "error-dim": "#bb5551",
+                        "surface-bright": "#234044",
+                        "surface": "#0D1F22",
+                        "surface-container-high": "#162e31",
+                        "on-secondary-fixed-variant": "#5a5b63",
+                        "secondary-container": "#3a3b42"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .grayscale-hover { filter: grayscale(100%); transition: all 0.3s ease; }
+        .grayscale-hover:hover { filter: grayscale(0%); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased selection:bg-tertiary/30">
+<!-- TopNavBar Implementation -->
+<header class="bg-surface/80 backdrop-blur-xl docked full-width top-0 sticky z-50 border-b border-outline-variant/10">
+<nav class="flex justify-between items-center max-w-7xl mx-auto px-8 h-20">
+<div class="text-xl font-bold text-[#e7e5e4] tracking-tighter">BrewRewards</div>
+<div class="hidden md:flex items-center gap-8 font-manrope font-semibold tracking-tight">
+<a class="text-[#e7b483] transition-colors duration-200" href="#">Product</a>
+<a class="text-[#e7e5e4]/60 hover:text-[#e7e5e4] transition-colors duration-200" href="#">Features</a>
+<a class="text-[#e7e5e4]/60 hover:text-[#e7e5e4] transition-colors duration-200" href="#">Solutions</a>
+<a class="text-[#e7e5e4]/60 hover:text-[#e7e5e4] transition-colors duration-200" href="#">Pricing</a>
+<a class="text-[#e7e5e4]/60 hover:text-[#e7e5e4] transition-colors duration-200" href="#">FAQ</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-[#c6c6c7] font-semibold font-manrope scale-95 active:scale-90 transition-transform">Login</button>
+<button class="bg-tertiary text-on-tertiary px-6 py-2.5 rounded-full font-bold font-manrope scale-95 active:scale-90 transition-transform">Start Free Trial</button>
+</div>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative pt-20 pb-32 overflow-hidden bg-surface">
+<div class="max-w-7xl mx-auto px-8 grid lg:grid-cols-2 gap-16 items-center">
+<div class="z-10">
+<span class="inline-block py-1 px-3 rounded-full bg-tertiary/10 text-tertiary text-xs font-bold tracking-widest uppercase mb-6">Loyalty Redefined</span>
+<h1 class="text-6xl md:text-7xl font-extrabold tracking-tighter leading-[1.1] mb-6">
+                        Turn Coffee Buyers into <span class="text-tertiary">Loyal Customers</span>
+</h1>
+<p class="text-lg text-on-surface-variant max-w-lg mb-10 leading-relaxed">
+                        BrewRewards helps you build a loyal customer base with a simple, automated points and rewards system tailored for cafes.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary text-on-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-primary-fixed transition-all duration-300">Start Free</button>
+<button class="bg-surface-container-high text-on-surface px-8 py-4 rounded-full font-bold text-lg hover:bg-surface-bright transition-all duration-300">Book Demo</button>
+</div>
+</div>
+<div class="relative">
+<div class="absolute -top-20 -right-20 w-96 h-96 bg-tertiary/10 rounded-full blur-[120px]"></div>
+<div class="relative bg-surface-container rounded-2xl p-4 shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-700">
+<img alt="Modern cafe dashboard with loyalty analytics" class="rounded-xl w-full object-cover aspect-[4/3] opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALY4nwe0l0I9r7J7D3r7BemgFcnFUva45Wr82VG3Ex5jYXD67el3eh_sTvScRhuWadavi44xgfW89r0jJWca-dLsc9_WalG5KNVSYVc-GTZ3tVVFdype7Txq0pknqHWwFZAG_A5HDNxdU7uBSNUavAXN6Cm6UX6W5gTMyYICpPYE7kRW7xlVRuqzXUmt-A3NHW499LikwfQO9svHG1lRotzM3mZvDjUje727FX_IakgU8y32CAhUVJlh3Jkvh5HC2mt6UIzogmGJQ"/>
+<div class="absolute -bottom-6 -left-6 bg-surface-bright p-6 rounded-2xl shadow-xl border border-outline-variant/20 max-w-[240px]">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-full bg-tertiary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary">trending_up</span>
+</div>
+<span class="font-bold text-sm">Revenue Up 24%</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-3/4"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Social Proof -->
+<section class="py-12 bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-8">
+<p class="text-center text-on-surface-variant text-sm font-semibold tracking-widest uppercase mb-12">Trusted by 500+ Local Roasteries</p>
+<div class="flex flex-wrap justify-center gap-12 md:gap-24 items-center opacity-40 grayscale hover:grayscale-0 transition-all">
+<div class="text-2xl font-bold font-headline">BEAN &amp; CO</div>
+<div class="text-2xl font-bold font-headline">ROAST MASTERS</div>
+<div class="text-2xl font-bold font-headline">CUPPA CLOUD</div>
+<div class="text-2xl font-bold font-headline">URBAN BREW</div>
+</div>
+<div class="grid md:grid-cols-2 gap-8 mt-16">
+<div class="p-8 bg-surface-container rounded-2xl flex items-center gap-6">
+<div class="text-4xl font-bold text-tertiary">"40%"</div>
+<p class="text-on-surface-variant font-medium">Increased repeat customers in the first 3 months.</p>
+</div>
+<div class="p-8 bg-surface-container rounded-2xl flex items-center gap-6">
+<span class="material-symbols-outlined text-4xl text-tertiary">verified</span>
+<p class="text-on-surface-variant font-medium">"The easiest way to track customer loyalty we've ever used."</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Problem Section -->
+<section class="py-24 bg-surface">
+<div class="max-w-7xl mx-auto px-8">
+<div class="max-w-2xl mb-16">
+<h2 class="text-4xl font-bold tracking-tight mb-4">Running a cafe is hard. Retaining customers shouldn't be.</h2>
+<p class="text-on-surface-variant">Traditional punch cards are lost, forgotten, or fakeable. You're losing valuable data every day.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="p-10 bg-surface-container-low rounded-2xl">
+<span class="material-symbols-outlined text-error text-4xl mb-6">person_off</span>
+<h3 class="text-xl font-bold mb-3">Customers don't return</h3>
+<p class="text-on-surface-variant leading-relaxed">Without a reason to come back, 70% of new visitors never return to the same cafe.</p>
+</div>
+<div class="p-10 bg-surface-container-low rounded-2xl">
+<span class="material-symbols-outlined text-error text-4xl mb-6">visibility_off</span>
+<h3 class="text-xl font-bold mb-3">No tracking</h3>
+<p class="text-on-surface-variant leading-relaxed">You don't know who your top 10% customers are or what they actually like to order.</p>
+</div>
+<div class="p-10 bg-surface-container-low rounded-2xl">
+<span class="material-symbols-outlined text-error text-4xl mb-6">shuffle</span>
+<h3 class="text-xl font-bold mb-3">Random discounts</h3>
+<p class="text-on-surface-variant leading-relaxed">Giving away free coffee to everyone kills margins. Reward the people who actually drive growth.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Solution Section -->
+<section class="py-24 bg-surface-container-low relative">
+<div class="max-w-7xl mx-auto px-8 grid lg:grid-cols-2 gap-16 items-center">
+<div class="order-2 lg:order-1">
+<div class="relative rounded-2xl overflow-hidden shadow-2xl">
+<img alt="Barista using tablet for loyalty program" class="w-full aspect-square object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdQS66epb6h56-S5hOlygi5kQ50QioYLTg5zgRKJrVFlC6tYG49DWOwxpjdn2xAIW1m7Ld5IuUSieOnpXjOtROwR4JHnAZcH522VWV61CtbaAcD3YPQjlPyXT79swjZVzsckfgqTvnhOnV1xe6S-0VaDGE26yqEBuzBxD7h34Jc0ZIzdQimUoKAQFAVc3FbJwJ1XnQOjQpcNtCMxLKdifLTieWkcLp7Q1ValMDZkrmA9mldkqoJw2Za21PWNcehcXQMuBxasDUv50"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 to-transparent"></div>
+</div>
+</div>
+<div class="order-1 lg:order-2">
+<h2 class="text-4xl font-bold tracking-tight mb-8">The Modern Way to Reward</h2>
+<div class="space-y-10">
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 h-12 bg-tertiary text-on-tertiary rounded-full flex items-center justify-center font-bold">1</div>
+<div>
+<h3 class="text-xl font-bold mb-2">Track Customers Automatically</h3>
+<p class="text-on-surface-variant">Syncs with your POS to record visits without extra hardware or manual entry.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 h-12 bg-tertiary text-on-tertiary rounded-full flex items-center justify-center font-bold">2</div>
+<div>
+<h3 class="text-xl font-bold mb-2">Reward Your Real Fans</h3>
+<p class="text-on-surface-variant">Create tiers that make sense. From "Caffeine Newbie" to "Legendary Brewmaster."</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 h-12 bg-tertiary text-on-tertiary rounded-full flex items-center justify-center font-bold">3</div>
+<div>
+<h3 class="text-xl font-bold mb-2">Data-Driven Insights</h3>
+<p class="text-on-surface-variant">See peaks, valleys, and customer preferences to optimize your inventory and staffing.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Success Stories (New Section 1) -->
+<section class="py-24 bg-surface">
+<div class="max-w-7xl mx-auto px-8">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold mb-4">Brewing Success Stories</h2>
+<p class="text-on-surface-variant">See how local favorites transformed their business.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="bg-surface-container-low rounded-2xl p-6 hover:bg-surface-container transition-all group border border-outline-variant/10">
+<img alt="Cafe Interior" class="w-full h-40 object-cover rounded-xl mb-6 opacity-80 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAPAgbooVB5jsGxDepi2wnXV9suObEn8vzyCnIRdjXnOe3C2_kbNpGNObu_so0cZQkLcOhaNgPRJwOXTvbl3jr73cHr2uqXy4PQvK4Rb3OtgDm0z27K_5Z5mDZNvrRYJWRJfDoqVWV3LiOkKg4qpOydo4PtVGl_xr1OZbllQlBbPit081l8Jvwx3q7y-igEEjwtqbsWVolVALxGK-70WHlD-_RTn1OrIbOZLiUsOjFHk8Vl9DivUdqcx7CTwxjrb9l5TAhGSDWzgRs"/>
+<h3 class="text-xl font-bold mb-2">The Roasting Co.</h3>
+<div class="inline-flex items-center gap-2 text-tertiary font-bold mb-4">
+<span class="material-symbols-outlined text-sm">group</span>
+                            1,200+ Active Members
+                        </div>
+<p class="text-sm text-on-surface-variant leading-relaxed">Boosted weekly foot traffic by 32% within the first two months of launch.</p>
+</div>
+<div class="bg-surface-container-low rounded-2xl p-6 hover:bg-surface-container transition-all group border border-outline-variant/10">
+<img alt="Cafe Coffee" class="w-full h-40 object-cover rounded-xl mb-6 opacity-80 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgK0SBip9PH1jMvEaLoqDp8yVB_ePWMtfwQ8yNGBnr9Zjx2kukKPzPgXGuAJksBw4W3b5jZz6jivW8nsDnC-r9YG31TpN7CsmF6BptAJhHMrgqs9kGS_fJ5dmmy6MQaEcyWasfaT1Q8bDB8E472WU5PZ5f6o29-wz9ftvkzOroIAkK4g5j2-mSzBmCKV31_LPwExEPJuHE204vmKM8H4SAgTrg-RzYvcbrmQWpHWZUuWvo8mK0zT7sCbbUTWgv7gZhxzee2TfN89yn"/>
+<h3 class="text-xl font-bold mb-2">Harbor Brews</h3>
+<div class="inline-flex items-center gap-2 text-tertiary font-bold mb-4">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                            $4.2k Extra Rev/Mo
+                        </div>
+<p class="text-sm text-on-surface-variant leading-relaxed">Used targeted morning rewards to fill their shop during previously quiet hours.</p>
+</div>
+<div class="bg-surface-container-low rounded-2xl p-6 hover:bg-surface-container transition-all group border border-outline-variant/10">
+<img alt="Barista" class="w-full h-40 object-cover rounded-xl mb-6 opacity-80 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEH3rioqPwv6eauzS-4sClPdkQpgQ2uOiiRT9EJtd3DWGPWvQhNFqReF0kiKD6GGZDQ5R8-QCYE_ZNGQUSMUkBVO84zTrfekFvgeCoDl0daiimD5tzJT-q3cdJeiU2PBNr0kgodrgr3rgftfoeIt-zdPpA2opB1MV8K6FDPRSRKMpb4oVO00xxze56nmJCF_z3IOvLVY4g287wHOzC6YwnXplZXMfo-dYtQ3zkKzffk4WiIeffQMCJvMoAlFkAru_tHAaEoPmfYIFs"/>
+<h3 class="text-xl font-bold mb-2">Urban Grind</h3>
+<div class="inline-flex items-center gap-2 text-tertiary font-bold mb-4">
+<span class="material-symbols-outlined text-sm">repeat</span>
+                            85% Retention Rate
+                        </div>
+<p class="text-sm text-on-surface-variant leading-relaxed">Automated loyalty tracking saved their baristas hours of manual punch card checking.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Bento Grid -->
+<section class="py-24 bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-8">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold mb-4">Built for the Modern Barista</h2>
+<p class="text-on-surface-variant">Everything you need to run a high-performing loyalty program.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-6 gap-6 h-auto md:h-[600px]">
+<div class="md:col-span-3 bg-surface-container rounded-2xl p-10 flex flex-col justify-between hover:bg-surface-bright transition-all border border-outline-variant/10">
+<div>
+<span class="material-symbols-outlined text-4xl text-tertiary mb-6">token</span>
+<h3 class="text-2xl font-bold mb-4">Smart Points System</h3>
+<p class="text-on-surface-variant">Flexible rules for earning points based on spend or specific items purchased.</p>
+</div>
+<div class="mt-8 flex gap-2">
+<div class="w-8 h-8 rounded-full bg-tertiary"></div>
+<div class="w-8 h-8 rounded-full bg-tertiary/60"></div>
+<div class="w-8 h-8 rounded-full bg-tertiary/30"></div>
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant"></div>
+</div>
+</div>
+<div class="md:col-span-3 bg-surface-container rounded-2xl p-10 flex flex-col justify-between hover:bg-surface-bright transition-all border border-outline-variant/10">
+<div>
+<span class="material-symbols-outlined text-4xl text-tertiary mb-6">analytics</span>
+<h3 class="text-2xl font-bold mb-4">Analytics Dashboard</h3>
+<p class="text-on-surface-variant">Real-time heatmaps of customer activity and reward ROI tracking.</p>
+</div>
+<div class="h-24 w-full bg-surface-container-high rounded-xl mt-8 flex items-end gap-1 p-4">
+<div class="bg-tertiary/40 w-full h-1/2 rounded-t-sm"></div>
+<div class="bg-tertiary/60 w-full h-3/4 rounded-t-sm"></div>
+<div class="bg-tertiary w-full h-full rounded-t-sm"></div>
+<div class="bg-tertiary/50 w-full h-2/3 rounded-t-sm"></div>
+</div>
+</div>
+<div class="md:col-span-2 bg-surface-container-low rounded-2xl p-8 hover:bg-surface-bright transition-all border border-outline-variant/20">
+<span class="material-symbols-outlined text-3xl text-tertiary mb-4">group_add</span>
+<h3 class="text-xl font-bold mb-2">Referrals</h3>
+<p class="text-sm text-on-surface-variant">Let your fans grow your business for you.</p>
+</div>
+<div class="md:col-span-2 bg-surface-container-low rounded-2xl p-8 hover:bg-surface-bright transition-all border border-outline-variant/20">
+<span class="material-symbols-outlined text-3xl text-tertiary mb-4">celebration</span>
+<h3 class="text-xl font-bold mb-2">Rewards &amp; Offers</h3>
+<p class="text-sm text-on-surface-variant">Push notifications for birthday specials and more.</p>
+</div>
+<div class="md:col-span-2 bg-surface-container-low rounded-2xl p-8 hover:bg-surface-bright transition-all border border-outline-variant/20">
+<span class="material-symbols-outlined text-3xl text-tertiary mb-4">bolt</span>
+<h3 class="text-xl font-bold mb-2">Easy Setup</h3>
+<p class="text-sm text-on-surface-variant">Go live in under 15 minutes. No dev required.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Tech Stack (New Section 3) -->
+<section class="py-24 bg-surface">
+<div class="max-w-7xl mx-auto px-8">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold mb-4">Modern Infrastructure</h2>
+<p class="text-on-surface-variant">Reliable, fast, and secure technology powering your cafe's growth.</p>
+</div>
+<div class="flex flex-wrap justify-center items-center gap-12 md:gap-20">
+<div class="flex flex-col items-center grayscale-hover cursor-default">
+<svg class="w-16 h-16 mb-4 fill-on-surface" viewbox="0 0 24 24"><path d="M13 12h7v1.5H13V12zm0-2.5h7V11h-7V9.5zm0 5h7V16h-7v-1.5zM12 18H4v-1.5h8V18zm0-2.5H4V14h8v1.5zm0-2.5H4v-1.5h8V13zm0-2.5H4V9h8v1.5zm0-2.5H4V6.5h8V8zM4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path></svg>
+<span class="text-sm font-bold opacity-40">Next.js</span>
+</div>
+<div class="flex flex-col items-center grayscale-hover cursor-default">
+<svg class="w-16 h-16 mb-4 fill-[#635BFF]" viewbox="0 0 24 24"><path d="M13.911 8.02c0-1.252.813-2.316 2.05-2.316 1.214 0 1.988 1.026 1.988 2.228 0 1.542-1.214 2.53-2.378 2.53-1.141 0-1.66-.653-1.66-2.442zm-3.413 5.344c.456 0 .81-.354.81-.81s-.354-.81-.81-.81h-3.32v1.62h3.32zm-.81 1.62c-.456 0-.81.354-.81.81s.354.81.81.81h3.32v-1.62h-3.32zM12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z"></path></svg>
+<span class="text-sm font-bold opacity-40">Stripe</span>
+</div>
+<div class="flex flex-col items-center grayscale-hover cursor-default">
+<svg class="w-16 h-16 mb-4 fill-[#38BDF8]" viewbox="0 0 24 24"><path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"></path></svg>
+<span class="text-sm font-bold opacity-40">Tailwind</span>
+</div>
+<div class="flex flex-col items-center grayscale-hover cursor-default">
+<svg class="w-16 h-16 mb-4 fill-on-surface" viewbox="0 0 24 24"><path d="M24 22.525H0l12-21.05 12 21.05z"></path></svg>
+<span class="text-sm font-bold opacity-40">Vercel</span>
+</div>
+</div>
+</div>
+</section>
+<!-- How it Works -->
+<section class="py-24 bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-8 text-center">
+<h2 class="text-4xl font-bold mb-16">Three Steps to Success</h2>
+<div class="grid md:grid-cols-3 gap-12 relative">
+<div class="hidden md:block absolute top-12 left-[20%] right-[20%] h-0.5 bg-gradient-to-r from-transparent via-outline-variant to-transparent opacity-30"></div>
+<div class="relative flex flex-col items-center">
+<div class="w-24 h-24 rounded-full bg-surface-container-high border-4 border-surface-container-low flex items-center justify-center mb-8 z-10 shadow-lg">
+<span class="material-symbols-outlined text-4xl text-tertiary">storefront</span>
+</div>
+<h3 class="text-xl font-bold mb-4">Create Account</h3>
+<p class="text-on-surface-variant">Sign up and sync your existing menu or POS system.</p>
+</div>
+<div class="relative flex flex-col items-center">
+<div class="w-24 h-24 rounded-full bg-surface-container-high border-4 border-surface-container-low flex items-center justify-center mb-8 z-10 shadow-lg">
+<span class="material-symbols-outlined text-4xl text-tertiary">settings_suggest</span>
+</div>
+<h3 class="text-xl font-bold mb-4">Set Rewards</h3>
+<p class="text-on-surface-variant">Decide how many points a latte is worth and what customers get.</p>
+</div>
+<div class="relative flex flex-col items-center">
+<div class="w-24 h-24 rounded-full bg-surface-container-high border-4 border-surface-container-low flex items-center justify-center mb-8 z-10 shadow-lg">
+<span class="material-symbols-outlined text-4xl text-tertiary">qr_code_2</span>
+</div>
+<h3 class="text-xl font-bold mb-4">Earn &amp; Redeem</h3>
+<p class="text-on-surface-variant">Customers scan at checkout and start climbing the loyalty ladder.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Latest News (New Section 2) -->
+<section class="py-24 bg-surface">
+<div class="max-w-7xl mx-auto px-8">
+<div class="flex justify-between items-end mb-12">
+<div class="max-w-xl">
+<h2 class="text-4xl font-bold mb-4">Latest News &amp; Updates</h2>
+<p class="text-on-surface-variant">Freshly roasted insights from the BrewRewards team.</p>
+</div>
+<a class="hidden md:flex items-center gap-2 text-tertiary font-bold hover:gap-3 transition-all" href="#">
+                        View all posts <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<article class="flex flex-col">
+<div class="mb-6 overflow-hidden rounded-2xl aspect-video bg-surface-container-low border border-outline-variant/10">
+<img alt="News" class="w-full h-full object-cover opacity-80 hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBR9BXxzZkvRspx57la_4zeLV4GDy4hvEN51hwEsqlddL6I0FVM1VJZYXkaazbsRPyiuj3-lK6Xc3b5GFhPCx9kvsP6tM_7LmP_kR6fUv3o47xgtFU4UdVxiexF9R1imYOAIB3FyW-rWp7TKL8EiKnLz5xho4vvTp7_tHp75PWBEC_4Wk3v4goRKXvWs6Y1hFrKAiqxynsGbrfRTB0DZZbK8c97YMTR06dZmVD-_ehcmKgT1FjnDOYKDlc2nu--dtME1JRREBYl7eRI"/>
+</div>
+<div class="text-xs text-on-surface-variant font-bold uppercase tracking-widest mb-3">April 12, 2024</div>
+<h3 class="text-xl font-bold mb-4 leading-snug">New Integration with Square POS: Seamless Syncing Now Live</h3>
+<p class="text-on-surface-variant text-sm mb-6 line-clamp-2">Connect your Square terminal in seconds and start tracking loyalty points automatically with every swipe.</p>
+<a class="text-tertiary font-bold text-sm inline-flex items-center gap-1 hover:underline" href="#">Read More <span class="material-symbols-outlined text-sm">open_in_new</span></a>
+</article>
+<article class="flex flex-col">
+<div class="mb-6 overflow-hidden rounded-2xl aspect-video bg-surface-container-low border border-outline-variant/10">
+<img alt="Analytics" class="w-full h-full object-cover opacity-80 hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDszMzGYGQuW01fJWBSaeWfw5dy28l5_H8vo8MgN0Lf5oanE_iHrCexeVf6-aqC1Iy9Gxo_o1oYIhFbZuK6cK9t3_5461JYoBO1DtbO-SG1f9TfzjNm0MKqM0hQcA3c19-Q5bCjqcDODuMKaOFG4VAh7cSwXdR2Dc6wb3GA34N0CfF6z3O0COjhqpRAE6qI-INhbEcvchqm0_uigCZUS4BcEJOrToV-OuMjcVzaVggVxVM5bDHCe8Cn_lGJk0irBuzkvl3hD_6sFH_p"/>
+</div>
+<div class="text-xs text-on-surface-variant font-bold uppercase tracking-widest mb-3">March 28, 2024</div>
+<h3 class="text-xl font-bold mb-4 leading-snug">Deep Dive: Understanding Your Peak Business Hours</h3>
+<p class="text-on-surface-variant text-sm mb-6 line-clamp-2">Our new Heatmap feature lets you visualize exactly when your most loyal customers are visiting your shop.</p>
+<a class="text-tertiary font-bold text-sm inline-flex items-center gap-1 hover:underline" href="#">Read More <span class="material-symbols-outlined text-sm">open_in_new</span></a>
+</article>
+<article class="flex flex-col">
+<div class="mb-6 overflow-hidden rounded-2xl aspect-video bg-surface-container-low border border-outline-variant/10">
+<img alt="Barista Training" class="w-full h-full object-cover opacity-80 hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMvIwcUHUJ3AGqsYCGbmlHbIo1k6P6bozdjDyPoUOZrUbpOn32lo3RmfIIb5zvDMBuY1NywSpHBL6hBLX-2RVc3f6FOJ3DiodEt-GuZuPS5TwJf_i6VudmqjsjhERIGUPQAD_ttZasVsn7bjKNxiRrXSc8rLEsfsdKz82zPCxlYqFMNTn8qPEX9N1KPErLro5MMHdCdnWSdkcd8KmOFSjbRi70aQ2efhw2h2bz6iXAO2xsZWt8fwyK4xfc2XIMN0O5jgcQBHZz8IJP"/>
+</div>
+<div class="text-xs text-on-surface-variant font-bold uppercase tracking-widest mb-3">March 15, 2024</div>
+<h3 class="text-xl font-bold mb-4 leading-snug">5 Tips to Get Customers to Sign Up at Checkout</h3>
+<p class="text-on-surface-variant text-sm mb-6 line-clamp-2">Simple scripts for your baristas that increase sign-up rates by up to 60% without annoying customers.</p>
+<a class="text-tertiary font-bold text-sm inline-flex items-center gap-1 hover:underline" href="#">Read More <span class="material-symbols-outlined text-sm">open_in_new</span></a>
+</article>
+</div>
+</div>
+</section>
+<!-- Product Preview Section -->
+<section class="py-24 bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-8">
+<div class="bg-surface-container rounded-3xl p-8 md:p-12 overflow-hidden border border-outline-variant/10 shadow-2xl">
+<div class="grid lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-4">
+<h2 class="text-3xl font-bold mb-6">Designed for Focus</h2>
+<ul class="space-y-6">
+<li class="flex items-center gap-4 text-tertiary">
+<span class="material-symbols-outlined">check_circle</span>
+<span class="font-bold text-on-surface">Points Overview</span>
+</li>
+<li class="flex items-center gap-4 text-on-surface-variant">
+<span class="material-symbols-outlined">radio_button_unchecked</span>
+<span>Reward Configuration</span>
+</li>
+<li class="flex items-center gap-4 text-on-surface-variant">
+<span class="material-symbols-outlined">radio_button_unchecked</span>
+<span>Live Customer Feed</span>
+</li>
+</ul>
+</div>
+<div class="lg:col-span-8 bg-surface-container-lowest rounded-2xl p-6 shadow-2xl relative border border-outline-variant/10">
+<div class="flex items-center justify-between mb-8 pb-4 border-b border-outline-variant/20">
+<div class="flex gap-2">
+<div class="w-3 h-3 rounded-full bg-error/40"></div>
+<div class="w-3 h-3 rounded-full bg-tertiary/40"></div>
+<div class="w-3 h-3 rounded-full bg-primary/40"></div>
+</div>
+<div class="text-xs text-on-surface-variant font-mono uppercase tracking-widest">LOYALTY DASHBOARD v2.4</div>
+</div>
+<div class="grid md:grid-cols-2 gap-6">
+<div class="p-6 bg-surface-container-high rounded-xl border border-outline-variant/10">
+<div class="text-xs text-on-surface-variant mb-2 uppercase tracking-wide font-bold">ACTIVE CUSTOMERS</div>
+<div class="text-3xl font-bold">1,284</div>
+<div class="mt-4 h-12 w-full bg-surface-container-highest rounded flex items-center px-4">
+<div class="w-full bg-surface-container-low h-1 rounded-full">
+<div class="bg-tertiary w-4/5 h-full rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="p-6 bg-surface-container-high rounded-xl border border-outline-variant/10">
+<div class="text-xs text-on-surface-variant mb-2 uppercase tracking-wide font-bold">REWARDS ISSUED (WEEKLY)</div>
+<div class="text-3xl font-bold">412</div>
+<div class="mt-4 flex gap-1 items-end h-12">
+<div class="h-1/2 w-full bg-tertiary/20 rounded-t"></div>
+<div class="h-3/4 w-full bg-tertiary/40 rounded-t"></div>
+<div class="h-full w-full bg-tertiary rounded-t"></div>
+<div class="h-1/3 w-full bg-tertiary/30 rounded-t"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing Section -->
+<section class="py-24 bg-surface">
+<div class="max-w-7xl mx-auto px-8">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold mb-4">Simple, Scalable Pricing</h2>
+<p class="text-on-surface-variant">Start free and grow with your community.</p>
+</div>
+<div class="grid md:grid-cols-2 max-w-4xl mx-auto gap-8">
+<!-- Free Plan -->
+<div class="p-10 bg-surface-container rounded-2xl border border-outline-variant/10 flex flex-col">
+<div class="mb-8">
+<h3 class="text-xl font-bold mb-2">Small Shop</h3>
+<div class="text-4xl font-bold mb-4">$0 <span class="text-lg font-normal text-on-surface-variant">/mo</span></div>
+<p class="text-on-surface-variant text-sm leading-relaxed">Perfect for local stalls and tiny cafes just getting started.</p>
+</div>
+<ul class="space-y-4 mb-10 flex-grow">
+<li class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-tertiary text-lg">check</span>
+                                Up to 100 customers
+                            </li>
+<li class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-tertiary text-lg">check</span>
+                                Basic point system
+                            </li>
+<li class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-tertiary text-lg">check</span>
+                                Email support
+                            </li>
+</ul>
+<button class="w-full py-4 rounded-xl font-bold bg-surface-container-high hover:bg-surface-bright transition-colors">Start Free</button>
+</div>
+<!-- Pro Plan -->
+<div class="p-10 bg-surface-container-highest rounded-2xl border-2 border-tertiary/50 relative flex flex-col shadow-2xl">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-tertiary text-on-tertiary px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">Most Popular</div>
+<div class="mb-8">
+<h3 class="text-xl font-bold mb-2">Growth Pro</h3>
+<div class="text-4xl font-bold mb-4">$49 <span class="text-lg font-normal text-on-surface-variant">/mo</span></div>
+<p class="text-on-surface-variant text-sm leading-relaxed">For established shops looking to scale their loyalty game.</p>
+</div>
+<ul class="space-y-4 mb-10 flex-grow">
+<li class="flex items-center gap-3 text-sm font-semibold">
+<span class="material-symbols-outlined text-tertiary text-lg">check</span>
+                                Unlimited customers
+                            </li>
+<li class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-tertiary text-lg">check</span>
+                                Advanced analytics
+                            </li>
+<li class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-tertiary text-lg">check</span>
+                                Referral system
+                            </li>
+<li class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-tertiary text-lg">check</span>
+                                Custom branding
+                            </li>
+</ul>
+<button class="w-full py-4 rounded-xl font-bold bg-tertiary text-on-tertiary hover:opacity-90 transition-opacity">Get Started</button>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="py-24 bg-surface-container-low">
+<div class="max-w-3xl mx-auto px-8">
+<h2 class="text-3xl font-bold text-center mb-16">Frequently Asked Questions</h2>
+<div class="space-y-4">
+<div class="p-6 bg-surface-container rounded-xl border border-outline-variant/10">
+<h4 class="font-bold mb-3 flex items-center justify-between cursor-pointer">
+                            How does it work?
+                            <span class="material-symbols-outlined">expand_more</span>
+</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">BrewRewards integrates with your POS or works as a standalone tablet app. Customers earn points by scanning a QR code or entering their phone number at checkout.</p>
+</div>
+<div class="p-6 bg-surface-container rounded-xl border border-outline-variant/10">
+<h4 class="font-bold mb-3 flex items-center justify-between cursor-pointer">
+                            Is it easy to set up?
+                            <span class="material-symbols-outlined">expand_more</span>
+</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Absolutely. Most cafe owners go live in 15 minutes. We have ready-to-use templates for points and rewards based on the most successful cafes.</p>
+</div>
+<div class="p-6 bg-surface-container rounded-xl border border-outline-variant/10">
+<h4 class="font-bold mb-3 flex items-center justify-between cursor-pointer">
+                            Do I need technical skills?
+                            <span class="material-symbols-outlined">expand_more</span>
+</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">No coding or specialized technical knowledge required. If you can use a smartphone, you can manage BrewRewards.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-32 relative overflow-hidden bg-surface-container-highest">
+<div class="absolute inset-0 bg-tertiary/5 blur-[120px]"></div>
+<div class="max-w-4xl mx-auto px-8 text-center relative z-10">
+<h2 class="text-5xl font-extrabold tracking-tighter mb-8 leading-tight">Start building customer loyalty today</h2>
+<p class="text-xl text-on-surface-variant mb-12">Join hundreds of cafes using BrewRewards to increase their bottom line.</p>
+<div class="flex flex-col sm:flex-row justify-center gap-6">
+<button class="bg-primary text-on-primary px-10 py-5 rounded-full font-bold text-xl scale-95 hover:scale-100 transition-transform">Get Started Free</button>
+<button class="bg-surface-bright text-on-surface px-10 py-5 rounded-full font-bold text-xl scale-95 hover:scale-100 transition-transform">Contact Sales</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Implementation -->
+<footer class="bg-surface-container-lowest full-width py-24 border-t border-outline-variant/10">
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-2 md:grid-cols-4 gap-12 font-inter text-sm text-[#e7e5e4]/50">
+<div class="col-span-2 md:col-span-1">
+<div class="text-lg font-bold text-[#e7e5e4] mb-4">BrewRewards</div>
+<p class="max-w-xs mb-6">Built for the modern barista. Elevate your cafe with high-performance loyalty systems.</p>
+</div>
+<div>
+<h5 class="text-[#e7e5e4] font-bold mb-6">Product</h5>
+<ul class="space-y-4">
+<li><a class="hover:text-[#e7e5e4] transition-colors" href="#">Features</a></li>
+<li><a class="hover:text-[#e7e5e4] transition-colors" href="#">Pricing</a></li>
+<li><a class="hover:text-[#e7e5e4] transition-colors" href="#">Changelog</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-[#e7e5e4] font-bold mb-6">Resources</h5>
+<ul class="space-y-4">
+<li><a class="hover:text-[#e7e5e4] transition-colors" href="#">Contact Support</a></li>
+<li><a class="hover:text-[#e7e5e4] transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-[#e7e5e4] transition-colors" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-[#e7e5e4] font-bold mb-6">Social</h5>
+<ul class="space-y-4">
+<li><a class="hover:text-[#e7e5e4] transition-colors" href="#">Twitter</a></li>
+<li><a class="hover:text-[#e7e5e4] transition-colors" href="#">Cookie Policy</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-8 mt-16 pt-8 border-t border-outline-variant/10">
+<p class="text-[#e7e5e4]/40">© 2024 BrewRewards Inc. All rights reserved. Built for the modern barista.</p>
+</div>
+</footer>
+</body></html>

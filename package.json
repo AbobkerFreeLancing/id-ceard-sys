@@ -1,0 +1,32 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "front": "npx @tailwindcss/cli -c ./tailwind-frontend.config.js -i tailwind-frontend.css -o ./public/frontend/css/tailwind-frontend.css",
+        "front-watch": "npx @tailwindcss/cli -c ./tailwind-frontend.config.js -i tailwind-frontend.css -o ./public/frontend/css/tailwind-frontend.css --watch"
+    },
+    "devDependencies": {
+        "@alpinejs/focus": "^3.10.3",
+        "@prettier/plugin-php": "^0.25.0",
+        "prettier": "^3.9.5",
+        "@tailwindcss/vite": "^4.1.11",
+        "autoprefixer": "^10.4.14",
+        "axios": "^1.18.1",
+        "cross-env": "^10.0",
+        "laravel-echo": "^2.0",
+        "laravel-vite-plugin": "^3.0",
+        "lodash": "^4.17.19",
+        "postcss": "^8.5",
+        "postcss-nesting": "^14.0.0",
+        "pusher-js": "^8.5.0",
+        "tailwindcss": "^4.1.10",
+        "tippy.js": "^6.3.7",
+        "vite": "^8.0"
+    },
+    "dependencies": {
+        "@shopify/draggable": "^1.1.1",
+        "flowbite": "^4.0.1"
+    }
+}

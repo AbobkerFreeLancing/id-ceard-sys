@@ -1,0 +1,97 @@
+@font-face {
+    font-family: "Tajawal-Medium";
+    src: url("../fonts/Tajawal/Tajawal-Medium.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Tajawal-Regular";
+    src: url("../fonts/Tajawal/Tajawal-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Tajawal-Light";
+    src: url("../fonts/Tajawal/Tajawal-Light.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+div,
+article,
+section,
+main,
+li,
+p,
+button,
+a {
+    font-family: "Tajawal-Medium" !important;
+}
+
+body:has(.hide-header) .site-header,
+body:has(.hide-header) .site-footer {
+    display: none !important;
+}
+
+.bidi {
+    unicode-bidi: plaintext;
+}
+
+.rtl {
+    direction: rtl !important;
+}
+.ltr {
+    direction: ltr !important;
+}
+
+.pg-home header.main-header {
+    position: absolute;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.65) !important;
+}
+
+.pg-home header.main-header nav li a,
+.pg-home header.main-header nav li button {
+    color: #fff;
+}
+
+.pg-home header.main-header nav li a:hover,
+.pg-home header.main-header nav li button:hover {
+    color: rgb(123, 147, 214);
+}
+.pg-home header.main-header nav #myCartDropdownButton {
+    background-color: #d9d9d9;
+}
+
+.pg-home header.main-header .user-ul a {
+    color: #6b6969;
+}
+
+.pg-home header.main-header .category-ul a {
+    color: #6b6969;
+}
+
+.pg-home header.main-header .logo {
+    filter: brightness(10);
+}
+
+.datatable-wrapper .datatable-table,
+.datatable-wrapper .datatable-table th {
+    text-align: start !important;
+}
+
+.pg-content p {
+    line-height: 1.8;
+}
+
+.z-100 {
+    z-index: 100;
+}

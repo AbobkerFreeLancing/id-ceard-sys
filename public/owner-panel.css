@@ -1,0 +1,271 @@
+html {
+    --x-craft-sidebar: #f3f3f3;
+    --x-craft-sidebar-header: var(--x-craft-sidebar);
+    --x-sidebar-color: var(--x-craft-sidebar);
+    --x-border-color: transparent;
+}
+
+.bidi, .bidi * {
+    unicode-bidi: plaintext !important;
+}
+
+.ltr, .ltr * {
+    direction: ltr !important;
+}
+
+.inline {
+    display: inline !important;
+}
+
+.fi-sc-component .fi-wi-stats-overview-stat .fi-wi-stats-overview-stat-value
+ {
+    font-size: var(--text-2xl) !important;
+}
+
+
+.flowforge-card-content .fi-sc.fi-sc-has-gap {
+    gap: calc(var(--spacing)*2);
+}
+
+.ff-column .ff-column__title {
+    font-weight: bold;
+}
+
+.dark body {
+    background: #33404d !important;
+}
+
+body {
+    background: #f9f9f9 !important;
+}
+
+body:has(.login-email-input) {
+    background: var(--primary-50) !important;
+}
+
+.pointer {
+    cursor: pointer !important;
+}
+
+.fi-fo-rich-editor-content {
+    min-height: 119px !important;
+}
+/* Repeater  */
+.fi-fo-table-repeater-add .fi-btn:not(.fi-outlined) {
+    background-color: var(--primary-500);
+}
+
+.fi-in-entry .fi-in-entry-label {
+    font-size: var(--text-sm);
+    font-weight: bold;
+}
+
+.no-shadow,
+.no-shadow * {
+    text-shadow: 0 0 transparent !important;
+    box-shadow: 0 0 transparent !important;
+}
+
+/* Tab */
+
+.fi-wi-stats-overview-stat .fi-wi-stats-overview-stat-label {
+    color: var(--gray-700);
+}
+
+.fi-brand {
+    color: #fff !important;
+}
+
+.fi-modal .fi-modal-header {
+    padding-bottom: calc(var(--spacing) * 4);
+    padding-top: calc(var(--spacing) * 4);
+}
+
+.fi-main-topbar {
+    background: #e1e5e5 !important;
+}
+
+.fi-topbar-item.fi-active .fi-topbar-item-btn {
+    background-color: var(--primary-50);
+}
+
+.fi-sidebar {
+    background-color: var(--x-sidebar-color) !important;
+}
+
+.fi-sidebar-header {
+    background: var(--x-craft-sidebar-header) !important;
+}
+
+.fi-sidebar .border-t {
+    border-color: var(--x-border-color) !important;
+}
+
+.fi-sidebar-item a {
+    color: #fff !important;
+}
+
+.fi-sidebar-header {
+    border-bottom: 1px solid var(--x-border-color) !important;
+}
+
+.fi-sidebar-group span:first-child {
+    color: var(--primary-400) !important;
+}
+
+.fi-ta-header {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+}
+
+table {
+    width: 100%;
+}
+
+table.bordered tbody tr:nth-child(even) {
+    background: #f7f7f7;
+}
+
+@media screen {
+    .print-only {
+        display: none !important;
+    }
+}
+
+.padd-zero header.filament-header {
+    padding: 0;
+}
+
+[dir="rtl"] .rotate-y {
+    transform: rotateY(180deg);
+}
+
+[dir="ltr"] .rotate-y {
+    transform: rotateY(0deg);
+}
+
+/* Pruchases , Sales */
+.pruchases_invoice_repeater .fi-fo-repeater-item-content > div,
+.sales_invoice_repeater .fi-fo-repeater-item-content > div {
+    gap: 0.5rem !important;
+}
+
+img.invoice-logo {
+    height: 4rem;
+}
+
+.fi-badge {
+    font-size: 0.85rem !important;
+}
+
+/* Carerr */
+/* .job_view_page {
+
+} */
+
+/*********************/
+/* Print Styles Start */
+/*********************/
+
+@media print {
+    * {
+        -webkit-print-color-adjust: exact !important;
+        color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    table {
+        border-collapse: collapse !important;
+    }
+
+    tr,
+    th,
+    td {
+        border: 0.1pt solid #000;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    thead tr {
+        background: #f9f9f9 !important;
+    }
+
+    tbody tr:nth-child(even) {
+        background: #f9f9f9 !important;
+    }
+
+    html,
+    body {
+        height: 100vh;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden;
+    }
+
+    body * {
+        font-size: 12pt;
+        color: #000;
+    }
+
+    body .print-main-heading {
+        font-size: 20pt !important;
+    }
+
+    body .print-sub-heading {
+        font-size: 18pt !important;
+    }
+
+    .bidi {
+        unicode-bidi: plaintext !important;
+    }
+
+    html body .ltr {
+        direction: ltr !important;
+    }
+
+    .rtl {
+        direction: rtl !important;
+    }
+
+    .web-only {
+        display: none;
+    }
+
+    body * {
+        visibility: hidden;
+    }
+
+    .print-this,
+    .print-this * {
+        visibility: visible;
+    }
+
+    .print-this {
+        margin: 0 !important;
+        padding: 0 !important;
+        position: absolute;
+        right: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        top: 0 !important;
+    }
+
+    @page {
+        /* a4 */
+        size: 8.3in 11.7in;
+
+        /* a5 */
+        /* size: 5.8in  8.3in !important; */
+
+        /* a6 */
+        /* size: 4.1in 5.8in !important; */
+
+        /* size: 78mm auto !important; */
+    }
+}
+
+/* Kanban */
+
+/* .fi-section-content {
+    background-color: #f1f5f9;
+} */

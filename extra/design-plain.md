@@ -1,0 +1,1 @@
+clone this design using tailwind css v4, use plain HTML and alpinejs - don't use vue or react :

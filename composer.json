@@ -1,0 +1,83 @@
+{
+    "name": "laravel/laravel",
+    "type": "project",
+    "description": "The Laravel Framework.",
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^8.3",
+        "alkoumi/laravel-arabic-numbers": "^1.1",
+        "filament/filament": "^5.0",
+        "flowframe/laravel-trend": "*",
+        "guava/filament-icon-picker": "^4.0",
+        "guzzlehttp/guzzle": "^7.2",
+        "laravel/framework": "^13.0",
+        "laravel/reverb": "^1.7.0",
+        "laravel/sanctum": "^4.0",
+        "laravel/tinker": "^3.0",
+        "mcamara/laravel-localization": "^2.0",
+        "pxlrbt/filament-excel": "^3.0",
+        "relaticle/flowforge": "^4.0",
+        "secondnetwork/blade-tabler-icons": "^3.30",
+        "spatie/laravel-activitylog": "^5.1",
+        "spatie/laravel-permission": "^8.0",
+        "spatie/laravel-query-builder": "^7.3"
+    },
+    "require-dev": {
+        "barryvdh/laravel-debugbar": "^4.0",
+        "fakerphp/faker": "^1.23",
+        "laravel/pint": "^1.24",
+        "laravel/sail": "^1.41",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.6",
+        "phpunit/phpunit": "^12.5.12",
+        "spatie/laravel-ignition": "^2.0"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "autoload": {
+        "files": [
+            "app/helpers.php"
+        ],
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Packages\\": "Packages/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi",
+            "@php artisan filament:upgrade"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan filament:upgrade"
+        ]
+    }
+}
