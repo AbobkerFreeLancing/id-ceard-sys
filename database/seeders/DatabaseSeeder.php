@@ -24,7 +24,9 @@ class DatabaseSeeder extends Seeder
             config('bedaya.accounting_enabled')
                 ? \Packages\Accounting\Database\Seeders\AccountingPermissionsSeeder::class
                 : VoidSeeder::class,
-            \Packages\University\Database\Seeders\UniversityPermissionsSeeder::class,
+            config('bedaya.idcard_enabled')
+                ? \Packages\IdCard\Database\Seeders\IdCardPermissionsSeeder::class
+                : VoidSeeder::class,
 
             // Support Tickets
             config('bedaya.support_tickets_enabled') ? SupportTicketsPermissionsSeeder::class : VoidSeeder::class,
@@ -53,21 +55,10 @@ class DatabaseSeeder extends Seeder
                 : VoidSeeder::class,
             \Packages\Common\Database\Seeders\CustomerSeeder::class,
 
-            \Packages\University\Database\Seeders\AbsenceTypeSeeder::class,
-            \Packages\University\Database\Seeders\FeeTypeSeeder::class,
-            \Packages\University\Database\Seeders\ResultStatusSeeder::class,
-            \Packages\University\Database\Seeders\ResultTypeSeeder::class,
-            \Packages\University\Database\Seeders\GradeScaleSeeder::class,
-            \Packages\University\Database\Seeders\AcademicStatusSeeder::class,
-            \Packages\University\Database\Seeders\AcceptanceTypeSeeder::class,
-            \Packages\University\Database\Seeders\CertificateTypeSeeder::class,
-            \Packages\University\Database\Seeders\CourseSeeder::class,
-            \Packages\University\Database\Seeders\LevelSeeder::class,
-            \Packages\University\Database\Seeders\AcademicYearSeeder::class,
-            \Packages\University\Database\Seeders\SemesterSeeder::class,
-            \Packages\University\Database\Seeders\CollegeSeeder::class,
-            \Packages\University\Database\Seeders\DepartmentSeeder::class,
-            \Packages\University\Database\Seeders\DivisionSeeder::class,
+            // ID Card Module Seeder
+            config('bedaya.idcard_enabled')
+                ? \Packages\IdCard\Database\Seeders\IdCardSeeder::class
+                : VoidSeeder::class,
 
             SettingsSeeder::class,
         ]);

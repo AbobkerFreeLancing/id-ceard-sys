@@ -8,7 +8,6 @@ use App\Models\Setting;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Packages\Common\Models\Dev;
-use Packages\University\Models\AcademicYear;
 
 if (!function_exists('dev')) {
     function dev()
@@ -74,13 +73,6 @@ if (!function_exists('settings')) {
     function settings()
     {
         return Setting::find(1);
-    }
-}
-
-if (!function_exists('currentAcademicYear')) {
-    function currentAcademicYear()
-    {
-        return AcademicYear::where('is_current',true)->first();
     }
 }
 

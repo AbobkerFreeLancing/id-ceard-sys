@@ -41,9 +41,9 @@ class BedayaServiceProvider extends ServiceProvider
             $this->app->register(\Packages\Chat\ChatServiceProvider::class);
         }
 
-        // university Module
-        if (config('bedaya.university_enabled')) {
-            $this->app->register(\Packages\University\UniversityServiceProvider::class);
+        // ID Card Module (Huwia ID System)
+        if (config('bedaya.idcard_enabled')) {
+            $this->app->register(\Packages\IdCard\IdCardServiceProvider::class);
         }
     }
 }
