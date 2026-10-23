@@ -11,9 +11,10 @@ use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Schema;
-use Packages\University\Models\College;
-use Packages\University\Models\Department;
-use Packages\University\Models\Student;
+use Packages\IdCard\Models\Card;
+use Packages\IdCard\Models\Cardholder;
+use Packages\IdCard\Models\Department;
+use Packages\IdCard\Models\VerificationLog;
 
 class DashboardStatsOverview extends BaseWidget
 {
@@ -59,29 +60,31 @@ class DashboardStatsOverview extends BaseWidget
         $startDate = $this->pageFilters['startDate'] ?? null;
         $endDate = $this->pageFilters['endDate'] ?? null;
 
-        return array_merge([
+        return [
             Stat::make(
-                label: __('backend.students'),
-                value: Student::query()
+                label: __('idcard::idcard.cards'),
+                value: Card::query()
                     ->when($startDate, fn(Builder $query) => $query->whereDate('created_at', '>=', $startDate))
                     ->when($endDate, fn(Builder $query) => $query->whereDate('created_at', '<=', $endDate))
                     ->count(),
             )
-                ->icon(Heroicon::OutlinedUserCircle)
-                ->chart([7, 5, 10, 6, 4, 5, 11])
+                ->icon(Heroicon::OutlinedIdentification)
+                ->chart([3, 6, 9, 14, 18, 24, 30])
                 ->color(Color::Blue)
                 ->visible(true),
+
             Stat::make(
-                label: __('backend.colleges'),
-                value: College::query()
+                label: __('idcard::idcard.cardholders'),
+                value: Cardholder::query()
                     ->when($startDate, fn(Builder $query) => $query->whereDate('created_at', '>=', $startDate))
                     ->when($endDate, fn(Builder $query) => $query->whereDate('created_at', '<=', $endDate))
                     ->count(),
             )
-                ->icon(Heroicon::OutlinedBuildingOffice2)
-                ->chart([7, 5, 10, 6, 4, 5, 11])
-                ->color(Color::Amber)
+                ->icon(Heroicon::OutlinedUserGroup)
+                ->chart([5, 8, 12, 15, 20, 22, 28])
+                ->color(Color::Emerald)
                 ->visible(true),
+
             Stat::make(
                 label: __('backend.departments'),
                 value: Department::query()
@@ -90,22 +93,21 @@ class DashboardStatsOverview extends BaseWidget
                     ->count(),
             )
                 ->icon(Heroicon::OutlinedBuildingOffice)
-                ->chart([7, 5, 10, 6, 4, 5, 11])
-                ->color(Color::Green)
+                ->chart([2, 3, 4, 4, 5, 5, 6])
+                ->color(Color::Amber)
                 ->visible(true),
 
             Stat::make(
-                label: __('backend.users'),
-                value: User::where('type', 'user')
-                    ->whereDoesntHave('roles', function (Builder $query) {
-                        $query->where('name', 'dev');
-                    })
+                label: __('idcard::idcard.verification_logs'),
+                value: VerificationLog::query()
+                    ->when($startDate, fn(Builder $query) => $query->whereDate('created_at', '>=', $startDate))
+                    ->when($endDate, fn(Builder $query) => $query->whereDate('created_at', '<=', $endDate))
                     ->count(),
             )
-                ->icon(Heroicon::OutlinedUserCircle)
-                ->visible(auth()->user()->can('user_management'))
-                ->chart([7, 5, 10, 6, 4, 5, 11])
-                ->color(Color::Amber),
-        ]);
+                ->icon(Heroicon::OutlinedShieldCheck)
+                ->chart([1, 4, 8, 12, 19, 25, 35])
+                ->color(Color::Cyan)
+                ->visible(true),
+        ];
     }
 }

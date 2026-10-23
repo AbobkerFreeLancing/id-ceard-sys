@@ -83,13 +83,13 @@ class AdminPanelProvider extends PanelProvider
             ->navigationGroups([
                 NavigationGroup::make()->label(__('backend.general')),
 
-                NavigationGroup::make()->label(__('backend.academic_structure_module')),
+                NavigationGroup::make()->label(__('idcard::idcard.nav_group_cards')),
 
-                NavigationGroup::make()->label(__('backend.fee_management_module')),
+                NavigationGroup::make()->label(__('idcard::idcard.nav_group_templates')),
 
-                NavigationGroup::make()->label(__('backend.student_affairs_module')),
+                NavigationGroup::make()->label(__('idcard::idcard.nav_group_cardholders')),
 
-                NavigationGroup::make()->label(__('backend.academic_affairs')),
+                NavigationGroup::make()->label(__('idcard::idcard.nav_group_verification')),
 
                 NavigationGroup::make()->label(__('backend.financial_accounts')),
 

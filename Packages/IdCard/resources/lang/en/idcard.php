@@ -56,4 +56,10 @@ return [
     'department' => 'Department / Faculty',
     'expiry_date' => 'Expiry Date',
     'card_uid' => 'Card Security UID',
+
+    // Navigation Groups
+    'nav_group_cards' => 'ID Cards Management',
+    'nav_group_templates' => 'Templates & Design',
+    'nav_group_cardholders' => 'Cardholders & Departments',
+    'nav_group_verification' => 'Security & Verification',
 ];

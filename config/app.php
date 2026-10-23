@@ -54,9 +54,7 @@ return [
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\Filament\AdminPanelProvider::class,
-        // App\Providers\Filament\SeekerPanelProvider::class,
         Packages\Providers\BedayaServiceProvider::class,
-        App\Providers\Filament\StudentPanelProvider::class,
         App\Providers\RouteServiceProvider::class,
 
     ],

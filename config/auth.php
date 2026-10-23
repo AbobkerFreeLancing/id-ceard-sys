@@ -1,7 +1,6 @@
-
 <?php
+
 use App\Models\User;
-use Packages\University\Models\Student;
 
 return [
     /*
@@ -27,12 +26,6 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-
-        // Students logging in through the web session.
-        'student' => [
-            'driver' => 'session',
-            'provider' => 'students',
-        ],
     ],
 
     /*
@@ -45,11 +38,6 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => User::class,
-        ],
-
-        'students' => [
-            'driver' => 'eloquent',
-            'model' => Student::class,
         ],
     ],
 

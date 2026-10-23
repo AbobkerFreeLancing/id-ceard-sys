@@ -56,4 +56,10 @@ return [
     'department' => 'القسم / الكلية',
     'expiry_date' => 'تاريخ الانتهاء',
     'card_uid' => 'المعرف الأمني الفريد',
+
+    // Navigation Groups
+    'nav_group_cards' => 'إدارة وتوليد البطاقات',
+    'nav_group_templates' => 'تصميم وقوالب البطاقات',
+    'nav_group_cardholders' => 'بيانات المنتسبين والأقسام',
+    'nav_group_verification' => 'الفحص والتحقق الأمني',
 ];

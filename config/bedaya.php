@@ -18,7 +18,6 @@ return [
 
     'docs_module_enabled' => false,
 
-    'university_enabled' => false,
     'idcard_enabled' => true,
 
     'chat_enabled' => false,
