@@ -83,13 +83,13 @@ class AdminPanelProvider extends PanelProvider
             ->navigationGroups([
                 NavigationGroup::make()->label(__('backend.general')),
 
-                NavigationGroup::make()->label(__('idcard::idcard.nav_group_cards')),
+                NavigationGroup::make()->label(__('backend.cards_management')),
 
-                NavigationGroup::make()->label(__('idcard::idcard.nav_group_templates')),
+                NavigationGroup::make()->label(__('backend.templates_and_design')),
 
-                NavigationGroup::make()->label(__('idcard::idcard.nav_group_cardholders')),
+                NavigationGroup::make()->label(__('backend.cardholders_and_org')),
 
-                NavigationGroup::make()->label(__('idcard::idcard.nav_group_verification')),
+                NavigationGroup::make()->label(__('backend.verification_security')),
 
                 NavigationGroup::make()->label(__('backend.financial_accounts')),
 

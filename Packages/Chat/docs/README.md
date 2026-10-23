@@ -1,4 +1,4 @@
-# UHS Chat Package
+# Huwia ID Chat Package
 
 A full-featured chat package for Laravel applications, supporting private conversations, group chats, and channels with real-time broadcasting, file attachments, and participant management.
 

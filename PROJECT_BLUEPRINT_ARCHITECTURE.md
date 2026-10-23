@@ -105,7 +105,7 @@ Packages/
 ├── Support/         # نظام تذاكر الدعم الفني والمحادثات
 ├── DocsModule/      # نظام توثيق المشاريع والتعليمات مع واجهات Livewire
 ├── Chat/            # نظام الدردشة الفورية والتواصل
-├── University/      # النظام التخصصي (الجامعة: الطلاب، الكليات، النتائج، الرسوم)
+├── IdCard/          # النظام التخصصي الذكي (نظام هوية: البطاقات، القوالب، المنتسبين، الأقسام، الفحص الأمني)
 ├── Enum/            # التعدادات الموحدة لكافة أجزاء النظام
 ├── Helpers/         # أدوات مساعدة عامة (BedayaHelper لتوليد الأرقام المرجعية والرموز)
 ├── Traits/          # السمات المشتركة (BelongsToBranch, HasActiveScope, BelongsToCreator)
@@ -119,19 +119,19 @@ Packages/
 return [
     'accounting_enabled' => true,
     'support_tickets_enabled' => true,
-    'university_enabled' => true,
+    'idcard_enabled' => true,
     'docs_module_enabled' => false,
     'chat_enabled' => false,
 ];
 ```
 ثم يقوم `BedayaServiceProvider` بتسجيل الموديولات الفعالة فقط:
 ```php
-if (config('bedaya.accounting_enabled')) {
-    $this->app->register(\Packages\Accounting\AccountingServiceProvider::class);
+if (config('bedaya.idcard_enabled')) {
+    $this->app->register(\Packages\IdCard\IdCardServiceProvider::class);
 }
 ```
 
-### تشريح الموديول الداخلي الواحد (مثال: `Packages/University/`):
+### تشريح الموديول الداخلي الواحد (مثال: `Packages/IdCard/`):
 كل موديول يمثل تطبيقاً مصغراً متكاملاً يحتوي على:
 - **`ServiceProvider.php`**: يقوم بتحميل المهاجرات تلقائياً (`loadMigrationsFrom`)، والمسارات (`routes/`)، والواجهات (`loadViewsFrom`)، والترجمات (`loadTranslationsFrom`).
 - **`Models/`**: موديلات الـ Eloquent الخاصة بالموديول.

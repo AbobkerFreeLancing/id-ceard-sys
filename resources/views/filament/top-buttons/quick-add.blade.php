@@ -10,8 +10,6 @@
         use App\Filament\Resources\Common\Users\UserResource;
         use App\Filament\Resources\Common\Customers\CustomerResource;
 
-        use App\Filament\Resources\University\Colleges\CollegeResource;
-        use App\Filament\Resources\University\Students\StudentResource;
     @endphp
     <!-- Dropdown Container -->
     <div x-data="{ open: false }" class="relative inline-block">
@@ -94,26 +92,6 @@
                     @endif
 
 
-                    @if (auth()->user()->can('student_management'))
-                        <a role="menuitem"
-                            href="{{ StudentResource::getUrl('create', ['tenant' => Filament::getTenant()]) }}"
-                            class="quick-add-link">
-                            <div class="flex-none flex items-center gap-x-2">
-                                <x-tabler-user class="inline-block size-5 text-primary-500" />
-                                <span>{{ __('backend.student') }}</span>
-                            </div>
-                        </a>
-                    @endif
-                    @if (auth()->user()->can('college_management'))
-                        <a role="menuitem"
-                            href="{{ CollegeResource::getUrl('create', ['tenant' => Filament::getTenant()]) }}"
-                            class="quick-add-link">
-                            <div class="flex-none flex items-center gap-x-2">
-                                <x-tabler-building class="inline-block size-5 text-primary-500" />
-                                <span>{{ __('backend.college') }}</span>
-                            </div>
-                        </a>
-                    @endif
 
                     @if (auth()->user()->can('user_management'))
                         <a role="menuitem"

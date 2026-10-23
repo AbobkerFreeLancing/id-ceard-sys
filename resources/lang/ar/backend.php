@@ -1666,7 +1666,21 @@ return [
     'confirm_and_import' => 'تأكيد وإتمام الاستيراد',
     'import_summary' => 'ملخص عملية الاستيراد',
     'national_id' => 'الرقم الوطني',
-    'issue_date' => 'تاريخ الإصدار',
-    'card_number' => 'رقم البطاقة',
     'flip_direction' => 'عكس الاتجاه',
+
+    // Huwia ID Card Management System
+    'idcard_module' => 'نظام إدارة البطاقات التعريفية',
+    'cards' => 'البطاقات التعريفية',
+    'card' => 'بطاقة تعريفية',
+    'cardholders' => 'حاملو البطاقات',
+    'cardholder' => 'حامل بطاقة',
+    'card_templates' => 'قوالب التصميم',
+    'card_template' => 'قالب بطاقة',
+    'batches' => 'دفعات الطباعة',
+    'batch' => 'دفعة طباعة',
+    'verification_logs' => 'سجلات الفحص والتحقق',
+    'verification_security' => 'الفحص والتحقق الأمني',
+    'cards_management' => 'إدارة وتوليد البطاقات',
+    'templates_and_design' => 'تصميم وقوالب البطاقات',
+    'cardholders_and_org' => 'بيانات المنتسبين والأقسام',
 ];

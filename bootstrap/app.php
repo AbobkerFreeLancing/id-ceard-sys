@@ -29,7 +29,6 @@ return Application::configure(basePath: dirname(__DIR__))
             'localeCookieRedirect' => \Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect::class,
             'localeViewPath' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
             'cors_api' => \App\Http\Middleware\CorsApi::class,
-            'seeker.auth' => \App\Http\Middleware\SeekerAuth::class,
             'mobile_only' => \App\Http\Middleware\EnsureMobileOnly::class,
         ]);
     })

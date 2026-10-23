@@ -14,7 +14,7 @@ use Packages\Enum\PriorityEnum;
 use Packages\Enum\TicketStatusEnum;
 use Packages\Support\Models\Ticket;
 use Packages\Support\Models\TicketCategory;
-use Packages\University\Models\Student;
+use Packages\IdCard\Models\Cardholder;
 
 class TicketForm
 {
@@ -60,39 +60,39 @@ class TicketForm
                             ])
                             ->columns(2),
 
-                        // Section for Student Information if submitter is a Student
-                        Section::make('بيانات الطالب صاحب التذكرة')
-                            ->description('بيانات الطالب الأكاديمية والشخصية المسجلة في النظام')
+                        // Section for Cardholder Information if submitter is a Cardholder
+                        Section::make('بيانات حامل البطاقة صاحب التذكرة')
+                            ->description('بيانات حامل البطاقة المسجلة في نظام الهوية الذكي')
                             ->schema([
-                                TextEntry::make('student_full_name')
-                                    ->label('اسم الطالب')
-                                    ->state(fn(Ticket $record): string => $record->student?->name ?? '—'),
+                                TextEntry::make('cardholder_full_name')
+                                    ->label('الاسم')
+                                    ->state(fn(Ticket $record): string => $record->cardholder?->full_name_ar ?? $record->cardholder?->first_name ?? '—'),
 
-                                TextEntry::make('student_university_no')
-                                    ->label('الرقم الجامعي')
-                                    ->state(fn(Ticket $record): string => $record->student?->university_no ?? '—')
+                                TextEntry::make('cardholder_identifier_code')
+                                    ->label('الرقم الوظيفي / الأكاديمي')
+                                    ->state(fn(Ticket $record): string => $record->cardholder?->identifier_code ?? '—')
                                     ->badge()
                                     ->color('primary'),
 
-                                TextEntry::make('student_national_id')
-                                    ->label('الرقم الوطني')
-                                    ->state(fn(Ticket $record): string => $record->student?->national_id_number ?? '—'),
+                                TextEntry::make('cardholder_national_id')
+                                    ->label('الرقم القومي / الهوية')
+                                    ->state(fn(Ticket $record): string => $record->cardholder?->national_id ?? '—'),
 
-                                TextEntry::make('student_college')
-                                    ->label('الكلية والقسم')
-                                    ->state(fn(Ticket $record): string => ($record->student?->academicRecord?->college?->name ?? '—') . ' / ' . ($record->student?->academicRecord?->department?->name ?? '—')),
+                                TextEntry::make('cardholder_dept')
+                                    ->label('القسم')
+                                    ->state(fn(Ticket $record): string => $record->cardholder?->department?->name ?? '—'),
 
-                                TextEntry::make('student_picture_preview')
-                                    ->label('الصورة الشخصية الحالية للطالب')
+                                TextEntry::make('cardholder_picture_preview')
+                                    ->label('الصورة الشخصية الحالية')
                                     ->state(function (Ticket $record): string {
-                                        $pic = $record->student?->profile_picture_url;
+                                        $pic = $record->cardholder?->photo_url;
                                         return $pic ? "<img src='{$pic}' style='width: 70px; height: 70px; object-fit: cover; border-radius: 12px; border: 1.5px solid #cbd5e1;' />" : 'لا توجد صورة';
                                     })
                                     ->html()
                                     ->columnSpanFull(),
                             ])
                             ->columns(2)
-                            ->hidden(fn(?Ticket $record) => $record === null || !$record->is_from_student),
+                            ->hidden(fn(?Ticket $record) => $record === null || !$record->is_from_cardholder),
                     ])
                     ->columnSpan(['lg' => 2]),
 

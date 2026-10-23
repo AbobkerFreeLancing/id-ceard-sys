@@ -34,13 +34,6 @@ if (!function_exists('user')) {
     }
 }
 
-if (!function_exists('student')) {
-    function student()
-    {
-        return auth('student')->user();
-    }
-}
-
 if (!function_exists('customer')) {
     function customer()
     {

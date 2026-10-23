@@ -1,21 +1,21 @@
-## Missing Admin Pages / Resources
+# مهام وخطة عمل نظام هوية لإدارة والتحقق من البطاقات الذكية (Huwia ID)
 
-- Attendance
-- Lectures
-- Student Transfers
-- Batch Courses
-- Academic Position
-- Results
-- Result Archive
-- Course Registrations
-- Result Details (missing absense ++)
+## 1. إعدادات النظام وقوالب البطاقات (Card Settings & Templates)
+- [ ] بناء صفحات وموارد Filament لإدارة قوالب وتصاميم البطاقات (`CardTemplateResource`).
+- [ ] محرر العناصر البصرية للقوالب (`TemplateElement`): نصوص، شعارات، صور شخصية، باركود، و QR Code.
+- [ ] دعم اتجاه البطاقة: أفقي (Landscape) وعمودي (Portrait) بمقاسات CR80 القياسية.
 
-## Needs Another Check - Not Complete
+## 2. إدارة الأقسام والمنتسبين (Cardholders & Expandable Departments)
+- [ ] إدارة الأقسام الشبكية القابلة للتمدد الذاتي والترقية الشجرية متعددة المستويات (`DepartmentResource`).
+- [ ] إدارة المنتسبين وحاملي البطاقات (`CardholderResource`) مع رفع الصور ومعالجتها.
+- [ ] استيراد جماعي للمنتسبين عبر ملفات Excel / CSV.
 
-- Batch Transition Form
+## 3. إصدار وطباعة البطاقات (Card Issuance & Printing)
+- [ ] توليد البطاقات وتعيين المعرفات الفريدة والأرقام الأمنية المشفرة (`CardSecurityService`).
+- [ ] محرك التصدير والطباعة بدقة 300 DPI وتوليد ملفات PDF للدفعات الفردية والجماعية.
+- [ ] سجل طلبات إعادة الإصدار وبدل الفاقد والتالف (`CardReissue`).
 
-## Notes
-
-- Batch Has Many Fee Structures (Limit Select option on student Form)
-- Course Allocation update on C-Alooc Filament Table
--
+## 4. الفحص والتحقق الأمني الذكي (Security & Verification)
+- [ ] فحص البطاقة المباشر عبر مسح الـ QR أو إدخال الكود في بوابة الفحص (`/verify-card`).
+- [ ] واجهة API المشفرة للتحقق السريع عبر أجهزة البوابات والتطبيقات (`/api/idcard/verify/{token}`).
+- [ ] تسجيل حركات وعمليات الفحص ومحاولات التزوير الفاشلة (`VerificationLog`).

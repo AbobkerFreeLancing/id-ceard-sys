@@ -16,11 +16,13 @@ class SettingsSeeder extends Seeder
     public function run()
     {
         Setting::create([
-            'company_name' => 'جامعة العلوم الصحية',
+            'company_name' => 'نظام هوية لإدارة والتحقق من البطاقات التعريفية',
+            'tagline' => 'المنصة الذكية لإدارة وطباعة وفحص البطاقات التعريفية الموثقة',
+            'description' => 'نظام متكامل لتوليد وتصميم وطباعة البطاقات الذكية والتحقق الرقمي الفوري عبر الـ QR Code المشفر',
             'company_address' => 'السودان، الخرطوم',
             'company_phones' => '0111122222 - 0933333333',
-            'company_email' => 'contact@bedaya.test',
-            'invoice_tagline' => 'شكراً، نسعد دوماً بكم.',
+            'company_email' => 'info@huwia-id.net',
+            'invoice_tagline' => 'نظام هوية الموثق للبطاقات التعريفية والتحقق الرقمي.',
             'financial_year_id' => Schema::hasTable('financial_years') ? FinancialYear::first()?->id : null,
             'currency_id' => Schema::hasTable('currencies') ? Currency::first()->id : null,
             'sales_default_currency_id' => Schema::hasTable('currencies') ? Currency::first()?->id : null,

@@ -62,7 +62,7 @@ class DashboardStatsOverview extends BaseWidget
 
         return [
             Stat::make(
-                label: __('idcard::idcard.cards'),
+                label: __('backend.cards'),
                 value: Card::query()
                     ->when($startDate, fn(Builder $query) => $query->whereDate('created_at', '>=', $startDate))
                     ->when($endDate, fn(Builder $query) => $query->whereDate('created_at', '<=', $endDate))
@@ -74,7 +74,7 @@ class DashboardStatsOverview extends BaseWidget
                 ->visible(true),
 
             Stat::make(
-                label: __('idcard::idcard.cardholders'),
+                label: __('backend.cardholders'),
                 value: Cardholder::query()
                     ->when($startDate, fn(Builder $query) => $query->whereDate('created_at', '>=', $startDate))
                     ->when($endDate, fn(Builder $query) => $query->whereDate('created_at', '<=', $endDate))
@@ -98,7 +98,7 @@ class DashboardStatsOverview extends BaseWidget
                 ->visible(true),
 
             Stat::make(
-                label: __('idcard::idcard.verification_logs'),
+                label: __('backend.verification_logs'),
                 value: VerificationLog::query()
                     ->when($startDate, fn(Builder $query) => $query->whereDate('created_at', '>=', $startDate))
                     ->when($endDate, fn(Builder $query) => $query->whereDate('created_at', '<=', $endDate))

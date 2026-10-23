@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Packages\Enum\PriorityEnum;
 use Packages\Enum\TicketStatusEnum;
 
+use Packages\IdCard\Models\Cardholder;
+
 class Ticket extends Model
 {
     use HasFactory;
@@ -60,15 +62,15 @@ class Ticket extends Model
         return $this->hasMany(TicketReply::class);
     }
 
-    public function getIsFromStudentAttribute(): bool
+    public function getIsFromCardholderAttribute(): bool
     {
-        return $this->ticketable_type === \Packages\University\Models\Student::class
-            || $this->ticketable instanceof \Packages\University\Models\Student;
+        return $this->ticketable_type === Cardholder::class
+            || $this->ticketable instanceof Cardholder;
     }
 
-    public function getStudentAttribute(): ?\Packages\University\Models\Student
+    public function getCardholderAttribute(): ?Cardholder
     {
-        if ($this->is_from_student) {
+        if ($this->is_from_cardholder) {
             return $this->ticketable;
         }
         return null;
@@ -77,8 +79,8 @@ class Ticket extends Model
     public function getSubmitterNameAttribute(): string
     {
         if ($this->ticketable) {
-            if ($this->is_from_student) {
-                return $this->ticketable->name . ' (' . ($this->ticketable->university_no ?? 'طالب') . ')';
+            if ($this->is_from_cardholder) {
+                return ($this->ticketable->full_name_ar ?? $this->ticketable->first_name ?? 'منتسب') . ' (' . ($this->ticketable->identifier_code ?? 'حامل بطاقة') . ')';
             }
             return $this->ticketable->name ?? 'مستخدم';
         }
@@ -86,9 +88,9 @@ class Ticket extends Model
     }
 
     /**
-     * Get all attachments submitted by the student in this ticket (main ticket + replies).
+     * Get all attachments submitted in this ticket (main ticket + replies).
      */
-    public function getStudentAttachments(): array
+    public function getAttachments(): array
     {
         $attachments = [];
 
@@ -97,28 +99,12 @@ class Ticket extends Model
             $isImg = in_array($ext, ['jpg', 'jpeg', 'png', 'webp', 'gif', 'bmp']);
             $url = asset('storage/' . $this->attachment);
 
-            $dataUri = null;
-            if ($isImg && \Illuminate\Support\Facades\Storage::disk('public')->exists($this->attachment)) {
-                $mime = match ($ext) {
-                    'png' => 'image/png',
-                    'gif' => 'image/gif',
-                    'webp' => 'image/webp',
-                    default => 'image/jpeg',
-                };
-                try {
-                    $content = \Illuminate\Support\Facades\Storage::disk('public')->get($this->attachment);
-                    if ($content && strlen($content) <= 8 * 1024 * 1024) {
-                        $dataUri = 'data:' . $mime . ';base64,' . base64_encode($content);
-                    }
-                } catch (\Throwable $e) {}
-            }
-
             $attachments[] = [
                 'id' => 'ticket_main',
                 'path' => $this->attachment,
                 'url' => $url,
-                'data_uri' => $dataUri ?? $url,
-                'source' => 'مرفق فتح التذكرة الأساسي',
+                'data_uri' => $url,
+                'source' => 'المرفق الأساسي للتذكرة',
                 'sender' => $this->submitter_name,
                 'is_image' => $isImg,
                 'extension' => $ext,
@@ -128,36 +114,17 @@ class Ticket extends Model
 
         foreach ($this->replies()->oldest()->get() as $reply) {
             if (!empty($reply->attachment)) {
-                $isStudent = ($reply->repliable_type === \Packages\University\Models\Student::class)
-                    || ($reply->repliable instanceof \Packages\University\Models\Student);
-
                 $ext = strtolower(pathinfo($reply->attachment, PATHINFO_EXTENSION));
                 $isImg = in_array($ext, ['jpg', 'jpeg', 'png', 'webp', 'gif', 'bmp']);
                 $url = asset('storage/' . $reply->attachment);
-
-                $dataUri = null;
-                if ($isImg && \Illuminate\Support\Facades\Storage::disk('public')->exists($reply->attachment)) {
-                    $mime = match ($ext) {
-                        'png' => 'image/png',
-                        'gif' => 'image/gif',
-                        'webp' => 'image/webp',
-                        default => 'image/jpeg',
-                    };
-                    try {
-                        $content = \Illuminate\Support\Facades\Storage::disk('public')->get($reply->attachment);
-                        if ($content && strlen($content) <= 8 * 1024 * 1024) {
-                            $dataUri = 'data:' . $mime . ';base64,' . base64_encode($content);
-                        }
-                    } catch (\Throwable $e) {}
-                }
 
                 $attachments[] = [
                     'id' => 'reply_' . $reply->id,
                     'path' => $reply->attachment,
                     'url' => $url,
-                    'data_uri' => $dataUri ?? $url,
-                    'source' => $isStudent ? 'مرفق مع رد الطالب' : 'مرفق رد الدعم الفني',
-                    'sender' => $reply->sender_name ?? ($isStudent ? 'الطالب' : 'الدعم الفني'),
+                    'data_uri' => $url,
+                    'source' => 'مرفق رد رقم #' . $reply->id,
+                    'sender' => $reply->sender_name,
                     'is_image' => $isImg,
                     'extension' => $ext,
                     'created_at' => $reply->created_at,
@@ -165,6 +132,5 @@ class Ticket extends Model
             }
         }
 
-        return $attachments;
     }
 }

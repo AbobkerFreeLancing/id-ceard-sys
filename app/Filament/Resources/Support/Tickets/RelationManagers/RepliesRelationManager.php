@@ -19,7 +19,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
 use Packages\Enum\TicketStatusEnum;
-use Packages\University\Models\Student;
+use Packages\IdCard\Models\Cardholder;
 
 class RepliesRelationManager extends RelationManager
 {
@@ -45,7 +45,7 @@ class RepliesRelationManager extends RelationManager
         return $schema->components([
             Textarea::make('reply')
                 ->label('نص الرد أو الملاحظة')
-                ->placeholder('اكتب نص الرد الموجه للطالب أو الملاحظة الداخلية هنا...')
+                ->placeholder('اكتب نص الرد أو الملاحظة الداخلية هنا...')
                 ->required()
                 ->rows(4)
                 ->columnSpanFull(),
@@ -58,7 +58,7 @@ class RepliesRelationManager extends RelationManager
                 ->columnSpanFull(),
 
             Toggle::make('is_internal_note')
-                ->label('ملاحظة داخلية خاصة بقسم الدعم (لا تظهر للطالب في حسابه)')
+                ->label('ملاحظة داخلية خاصة بقسم الدعم (لا تظهر لمقدم الطلب)')
                 ->default(false),
 
             Select::make('update_ticket_status')
@@ -78,8 +78,8 @@ class RepliesRelationManager extends RelationManager
                 TextColumn::make('sender')
                     ->label('المرسل')
                     ->state(function ($record) {
-                        if ($record->repliable instanceof Student) {
-                            return $record->repliable->name . ' (طالب: ' . ($record->repliable->university_no ?? '') . ')';
+                        if ($record->repliable instanceof Cardholder) {
+                            return ($record->repliable->full_name_ar ?? $record->repliable->first_name ?? 'منتسب') . ' (حامل بطاقة: ' . ($record->repliable->identifier_code ?? '') . ')';
                         }
                         if ($record->repliable instanceof User) {
                             return $record->repliable->name . ' (الدعم الفني)';
@@ -87,8 +87,8 @@ class RepliesRelationManager extends RelationManager
                         return 'مستخدم';
                     })
                     ->badge()
-                    ->color(fn($record) => $record->repliable instanceof Student ? 'info' : 'primary')
-                    ->icon(fn($record) => $record->repliable instanceof Student ? Heroicon::OutlinedAcademicCap : Heroicon::OutlinedLifebuoy),
+                    ->color(fn($record) => $record->repliable instanceof Cardholder ? 'info' : 'primary')
+                    ->icon(fn($record) => $record->repliable instanceof Cardholder ? Heroicon::OutlinedIdentification : Heroicon::OutlinedLifebuoy),
 
                 TextColumn::make('reply')
                     ->label('نص الرد')
@@ -120,7 +120,7 @@ class RepliesRelationManager extends RelationManager
             ])
             ->headerActions([
                 CreateAction::make()
-                    ->label('إضافة رد للطالب / ملاحظة داخلية')
+                    ->label('إضافة رد / ملاحظة داخلية')
                     ->icon(Heroicon::OutlinedPaperAirplane)
                     ->color('primary')
                     ->mutateFormDataUsing(function (array $data): array {

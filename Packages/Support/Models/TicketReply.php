@@ -32,8 +32,8 @@ class TicketReply extends Model
 
     public function getSenderNameAttribute(): string
     {
-        if ($this->repliable instanceof \Packages\University\Models\Student) {
-            return $this->repliable->name . ' (طالب)';
+        if ($this->repliable instanceof \Packages\IdCard\Models\Cardholder) {
+            return ($this->repliable->full_name_ar ?? $this->repliable->first_name ?? 'منتسب') . ' (حامل بطاقة)';
         }
         if ($this->repliable instanceof \App\Models\User) {
             return $this->repliable->name . ' (الدعم الفني)';

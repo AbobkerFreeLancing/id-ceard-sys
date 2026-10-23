@@ -1577,6 +1577,21 @@
     'national_id' => 'National ID',
     'first_name' => 'First Name',
     'second_name' => 'Second Name / Father Name',
-    'third_name' => 'Third Name / Grandfather Name',
     'fourth_name' => 'Fourth Name / Last Name',
+
+    // Huwia ID Card Management System
+    'idcard_module' => 'ID Card Management System',
+    'cards' => 'ID Cards',
+    'card' => 'ID Card',
+    'cardholders' => 'Cardholders',
+    'cardholder' => 'Cardholder',
+    'card_templates' => 'Design Templates',
+    'card_template' => 'Card Template',
+    'batches' => 'Print Batches',
+    'batch' => 'Print Batch',
+    'verification_logs' => 'Verification Logs',
+    'verification_security' => 'Security & Verification',
+    'cards_management' => 'ID Cards Management',
+    'templates_and_design' => 'Templates & Design',
+    'cardholders_and_org' => 'Cardholders & Departments',
 ];
