@@ -20,6 +20,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 
 class CardholdersTable
 {
@@ -81,7 +82,7 @@ class CardholdersTable
                     ->action(function (Cardholder $record): void {
                         $record->update([
                             'audit_status' => CardholderAuditStatus::Approved,
-                            'audited_by' => auth()->id(),
+                            'audited_by' => Auth::id(),
                         ]);
                         Notification::make()
                             ->title('تم اعتماد بيانات حامل الهوية للطباعة')
@@ -104,7 +105,7 @@ class CardholdersTable
                         $record->update([
                             'audit_status' => CardholderAuditStatus::Rejected,
                             'audit_notes' => $data['audit_notes'],
-                            'audited_by' => auth()->id(),
+                            'audited_by' => Auth::id(),
                         ]);
                         Notification::make()
                             ->title('تم رفض السجل وتوجيه الملاحظات للمُدخل')
