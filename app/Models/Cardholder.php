@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\CardholderAuditStatus;
 use App\Enums\CardStatus;
 use Database\Factories\CardholderFactory;
 use Illuminate\Database\Eloquent\Builder;
@@ -29,6 +30,7 @@ class Cardholder extends Model
     protected function casts(): array
     {
         return [
+            'audit_status' => CardholderAuditStatus::class,
             'extra_data' => 'array',
         ];
     }
@@ -62,6 +64,27 @@ class Cardholder extends Model
         return $query->where('organization_id', $organizationId);
     }
 
+    /**
+     * Scope a query to only include cardholders pending review.
+     */
+    public function scopePendingReview(Builder $query): Builder
+    {
+        return $query->where('audit_status', CardholderAuditStatus::PendingReview);
+    }
+
+    /**
+     * Scope a query to only include approved cardholders.
+     */
+    public function scopeApproved(Builder $query): Builder
+    {
+        return $query->where('audit_status', CardholderAuditStatus::Approved);
+    }
+
+    public function isApproved(): bool
+    {
+        return $this->audit_status === CardholderAuditStatus::Approved;
+    }
+
     public function organization(): BelongsTo
     {
         return $this->belongsTo(Organization::class, 'organization_id');
@@ -70,6 +93,11 @@ class Cardholder extends Model
     public function department(): BelongsTo
     {
         return $this->belongsTo(Department::class, 'department_id');
+    }
+
+    public function auditor(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'audited_by');
     }
 
     public function cards(): HasMany

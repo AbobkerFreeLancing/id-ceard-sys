@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use App\Enums\CardStatus;
+use App\Observers\CardObserver;
 use Database\Factories\CardFactory;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+#[ObservedBy([CardObserver::class])]
 class Card extends Model
 {
     /** @use HasFactory<CardFactory> */

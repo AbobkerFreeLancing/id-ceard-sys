@@ -13,24 +13,23 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    // المسمى المفرد (يستخدم في أزرار مثل: إضافة مستخدم)
-    protected static ?string $modelLabel = 'مستخدم';
+    protected static ?string $modelLabel = 'مستخدم ونظام صلاحيات';
 
-    // المسمى الجمع (يستخدم كعنوان للصفحة وفي الترويسة)
-    protected static ?string $pluralModelLabel = 'المستخدمين';
+    protected static ?string $pluralModelLabel = 'المستخدمون والأدوار';
 
-    // الاسم الظاهر في القائمة الجانبية (Navigation)
-    protected static ?string $navigationLabel = 'المستخدمين';
+    protected static ?string $navigationLabel = 'إدارة المستخدمين';
 
-    // مجموعة القائمة الجانبية إن أردت تصنيفه
-    // protected static ?string $navigationGroup = 'إدارة النظام';
+    protected static string|UnitEnum|null $navigationGroup = 'إدارة النظام والأمان';
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static ?int $navigationSort = 10;
+
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUserGroup;
 
     public static function form(Schema $schema): Schema
     {
